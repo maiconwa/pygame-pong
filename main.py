@@ -20,6 +20,11 @@ cpu_opponent = pygame.Rect(10, screen_height / 2 - 70, 10, 140)
 back_ground_color = pygame.Color('grey12')
 light_grey = (200, 200, 200)
 
+# movement
+ball_speed_x = 7
+ball_speed_y = 7
+
+
 # runs the game
 while True:
     # input handler
@@ -27,6 +32,10 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+
+    # game object move
+    ball.x += ball_speed_x
+    ball.y += ball_speed_y
 
     # screen visuals
     screen.fill(back_ground_color)
