@@ -3,11 +3,11 @@ import pygame
 import random
 
 
-# animation function
+# Animation function
 def ball_animation():
     global ball_speed_x, ball_speed_y, player_score, cpu_opponent_score, score_time
 
-    # game object move
+    # Game object move
     ball.x += ball_speed_x
     ball.y += ball_speed_y
 
@@ -28,19 +28,25 @@ def ball_animation():
     # game collision
     if ball.colliderect(player) and ball_speed_x > 0:
         pygame.mixer.Sound.play(pong_sound)
+
         if abs(ball.right - player.left) < 10:
             ball_speed_x *= -1
+
         elif abs(ball.bottom - player.top) < 10 and ball_speed_y > 0:
             ball_speed_y *= -1
+
         elif abs(ball.top - player.bottom) < 10 and ball_speed_y < 0:
             ball_speed_y *= -1
 
     if ball.colliderect(cpu_opponent) and ball_speed_x < 0:
         pygame.mixer.Sound.play(pong_sound)
+
         if abs(ball.left - cpu_opponent.left) < 10:
             ball_speed_x *= -1
+
         elif abs(ball.bottom - cpu_opponent.top) < 10 and ball_speed_y > 0:
             ball_speed_y *= -1
+
         elif abs(ball.top - cpu_opponent.bottom) < 10 and ball_speed_y < 0:
             ball_speed_y *= -1
 
@@ -98,47 +104,43 @@ def ball_start():
         score_time = None
 
 
-# setup
+# Setup
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
 clock = pygame.time.Clock()
 
-# main window
+# Main window
 screen_width = 1280
 screen_height = 960
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Pong')
 
-# game objects
+# Global variables
+back_ground_color = pygame.Color('grey12')
+light_grey = (200, 200, 200)
+player_score = 0
+cpu_opponent_score = 0
+game_font = pygame.font.Font("freesansbold.ttf", 32)
+pong_sound = pygame.mixer.Sound("pong.ogg")
+score_sound = pygame.mixer.Sound("score.ogg")
+
+# Game objects
 ball = pygame.Rect(screen_width / 2 - 15, screen_height / 2 - 15, 30, 30)
 player = pygame.Rect(screen_width - 20, screen_height / 2 - 70, 10, 140)
 cpu_opponent = pygame.Rect(10, screen_height / 2 - 70, 10, 140)
 
-# colors
-back_ground_color = pygame.Color('grey12')
-light_grey = (200, 200, 200)
-
-# movement
+# Movement
 ball_speed_x = 7 * random.choice((1, -1))
 ball_speed_y = 7 * random.choice((1, -1))
 player_speed = 0
 cpu_opponent_speed = 7
 
-# score
-player_score = 0
-cpu_opponent_score = 0
-game_font = pygame.font.Font("freesansbold.ttf", 32)
-
-# sound
-pong_sound = pygame.mixer.Sound("pong.ogg")
-score_sound = pygame.mixer.Sound("score.ogg")
-
-# timer
+# Timer
 score_time = True
 
-# runs the game
+# Game
 while True:
-    # input handler
+    # Input handler
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
@@ -161,23 +163,23 @@ while True:
             if event.key == pygame.K_UP:
                 player_speed += 7
 
-    # ball animation
+    # Ball animation
     ball_animation()
 
-    # player animation
+    # Player animation
     player_animation()
 
-    # cpu opponent animation
+    # Cpu opponent animation
     cpu_opponent_animation()
 
-    # screen visuals
+    # Screen visuals
     screen.fill(back_ground_color)
     pygame.draw.rect(screen, light_grey, player)
     pygame.draw.rect(screen, light_grey, cpu_opponent)
     pygame.draw.ellipse(screen, light_grey, ball)
     pygame.draw.aaline(screen, light_grey, (screen_width / 2, 0), (screen_width / 2, screen_height))
 
-    # score
+    # Score
     if score_time:
         ball_start()
 
@@ -187,6 +189,6 @@ while True:
     cpu_opponent_text = game_font.render(f"{cpu_opponent_score}", False, light_grey)
     screen.blit(cpu_opponent_text, (600, 470))
 
-    # update window
+    # Update window
     pygame.display.flip()
     clock.tick(60)
