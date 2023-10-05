@@ -85,15 +85,18 @@ def ball_start():
 
     if current_time - int(score_time) < 700:
         number_three = game_font.render("3", False, light_grey)
-        screen.blit(number_three, (screen_width / 2 - 10, screen_height / 2 + 20))
+        screen.blit(number_three, (screen_width /
+                    2 - 10, screen_height / 2 + 20))
 
     if 700 < current_time - int(score_time) < 1400:
         number_two = game_font.render("2", False, light_grey)
-        screen.blit(number_two, (screen_width / 2 - 10, screen_height / 2 + 20))
+        screen.blit(number_two, (screen_width /
+                    2 - 10, screen_height / 2 + 20))
 
     if 1400 < current_time - int(score_time) < 2100:
         number_one = game_font.render("1", False, light_grey)
-        screen.blit(number_one, (screen_width / 2 - 10, screen_height / 2 + 20))
+        screen.blit(number_one, (screen_width /
+                    2 - 10, screen_height / 2 + 20))
 
     if current_time - int(score_time) < 2100:
         ball_speed_x, ball_speed_y = 0, 0
@@ -177,7 +180,8 @@ while True:
     pygame.draw.rect(screen, light_grey, player)
     pygame.draw.rect(screen, light_grey, cpu_opponent)
     pygame.draw.ellipse(screen, light_grey, ball)
-    pygame.draw.aaline(screen, light_grey, (screen_width / 2, 0), (screen_width / 2, screen_height))
+    pygame.draw.aaline(screen, light_grey, (screen_width / 2,
+                       0), (screen_width / 2, screen_height))
 
     # Score
     if score_time:
@@ -186,7 +190,8 @@ while True:
     player_text = game_font.render(f"{player_score}", False, light_grey)
     screen.blit(player_text, (660, 470))
 
-    cpu_opponent_text = game_font.render(f"{cpu_opponent_score}", False, light_grey)
+    cpu_opponent_text = game_font.render(
+        f"{cpu_opponent_score}", False, light_grey)
     screen.blit(cpu_opponent_text, (600, 470))
 
     # Update window
