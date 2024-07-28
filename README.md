@@ -13,9 +13,12 @@ Activate the virtual environment with:
 
 Windows venv activation
 
-    # In cmd.exe
+In cmd.exe
+
     venv\Scripts\activate.bat
-    # In PowerShell
+
+In PowerShell
+
     venv\Scripts\Activate.ps1
 
 Linux and MacOS venv activation
