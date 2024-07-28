@@ -30,8 +30,8 @@ Run the script main.py.
 
 How to play the game:
 
-    upward arrow: &#8593;
-    downward arrow: &#8595;
+upward arrow: &#8593; <br>
+downward arrow: &#8595; <br>
 
 <br>
 
